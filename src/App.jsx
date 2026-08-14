@@ -196,13 +196,16 @@ function App() {
           </a>
 
           <div className={`nav-links ${open ? 'open' : ''}`}>
-            {['Services', 'Tools', 'Work', 'Approach', 'Contact'].map((x) => (
-              <a
-                key={x}
-                onClick={close}
-                href={`#${x === 'Reviews' ? 'testimonials' : x.toLowerCase()}`}
-              >
-                {x}
+            {[
+              ['Home', 'home'],
+              ['About', 'about'],
+              ['Experience', 'experience'],
+              ['Project', 'project'],
+              ['Skills', 'skills'],
+              ['Contact', 'contact'],
+            ].map(([label, id]) => (
+              <a key={id} onClick={close} href={`#${id}`}>
+                {label}
               </a>
             ))}
 
@@ -248,7 +251,7 @@ function App() {
             </p>
 
             <div className="cta">
-              <a className="btn primary" href="#work">
+              <a className="btn primary" href="#project">
                 View My Work →
               </a>
 
@@ -300,107 +303,23 @@ function App() {
       </div>
 
       <Section
-        id="services"
-        eyebrow="WHAT I DO"
+        id="about"
+        eyebrow="ABOUT ME"
         title={
           <>
-            WEB & CATALOG.
-            <br />
-            <mark>ONE WORKFLOW.</mark>
+            WHO <mark>I AM.</mark>
           </>
         }
-        sub="I support e-commerce stores with practical web updates and accurate catalog management—from storefront content to product data quality."
+        sub="A quick look at what I do and how I work."
       >
-        <div className="services-grid">
-          {services.map((s, i) => (
-            <article
-              key={s[1]}
-              className="service"
-              style={{ '--d': `${i * 0.09}s` }}
-            >
-              <div className="service-top">
-                <span>{s[0]}</span>
-                <small>{s[1]}</small>
-              </div>
-
-              <h3>{s[2]}</h3>
-              <code>{s[3]}</code>
-              <p>{s[4]}</p>
-
-              <ul>
-                {s[5].map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        id="tools"
-        eyebrow="TOOLKIT"
-        title={
-          <>
-            THE TOOLS BEHIND MY <mark>WORK.</mark>
-          </>
-        }
-        sub="The platforms and tools I use for web development, e-commerce catalog management, product-data updates, and quality checks."
-      >
-        <div className="toolbox">
-          {tools.map((t) => (
-            <div key={t[1]}>
-              <i>{t[0]}</i>
-              <span>{t[1]}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        id="tech-stack"
-        eyebrow="TECH STACK"
-        title={
-          <>
-            TECH <mark>STACK & PLATFORMS.</mark>
-          </>
-        }
-        sub="The technologies and platforms I use to build modern, scalable, and high-performance solutions."
-      >
-        <div className="tech-grid">
-          {tech.map((t) => (
-            <article key={t[1]}>
-              <i>{t[0]}</i>
-              <h3>{t[1]}</h3>
-              <p>{t[2]}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="tech-footer">
-          🚀
-          <span>
-            These technologies and platforms help me turn ideas into real-world
-            solutions. <b>Clean code. Scalable systems. Seamless experiences.</b>
-          </span>
-        </div>
-      </Section>
-
-      <section className="section identity">
-        <div className="container identity-grid">
+        <div className="identity-grid" style={{ marginBottom: 60 }}>
           <div>
-            <Eyebrow>WORKING APPROACH</Eyebrow>
-
-            <h2>
-              ACCURATE DATA.
-              <br />
-              <mark>RELIABLE STOREFRONTS.</mark>
-            </h2>
-
             <p>
-              I combine frontend web-development skills with detailed product
-              catalog management to help e-commerce stores stay accurate,
-              organized, and customer-ready.
+              I'm Samran Anjum, a Junior Web Developer and Catalog Manager
+              based in Pakistan. I help e-commerce stores stay accurate,
+              organized, and customer-ready — combining frontend web-development
+              skills with detailed product catalog management for Shopify,
+              WooCommerce, and WordPress stores.
             </p>
 
             <ul>
@@ -436,10 +355,113 @@ function App() {
             </pre>
           </div>
         </div>
-      </section>
+
+        <Eyebrow>WHAT I DO</Eyebrow>
+        <h2 style={{ margin: '15px 0 36px' }}>
+          WEB & CATALOG. <mark>ONE WORKFLOW.</mark>
+        </h2>
+
+        <div className="services-grid">
+          {services.map((s, i) => (
+            <article
+              key={s[1]}
+              className="service"
+              style={{ '--d': `${i * 0.09}s` }}
+            >
+              <div className="service-top">
+                <span>{s[0]}</span>
+                <small>{s[1]}</small>
+              </div>
+
+              <h3>{s[2]}</h3>
+              <code>{s[3]}</code>
+              <p>{s[4]}</p>
+
+              <ul>
+                {s[5].map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </Section>
 
       <Section
-        id="work"
+        id="experience"
+        eyebrow="EXPERIENCE"
+        title={
+          <>
+            HOW I <mark>APPROACH WORK.</mark>
+          </>
+        }
+        sub="No fluff, no fake reviews — just how I actually work with clients on catalog and web projects."
+      >
+        <div className="reviews" style={{ marginBottom: 60 }}>
+          {[
+            [
+              '🎯',
+              'Detail-Focused',
+              'Every product, image, and price gets double-checked before it goes live. Small errors in a catalog cost sales — I treat accuracy as non-negotiable.',
+            ],
+            [
+              '⏱️',
+              'Clear Communication',
+              'I respond within 24 hours, give realistic timelines, and update you on progress instead of going silent until the work is "done."',
+            ],
+            [
+              '🔁',
+              'Built to Last',
+              'I organize data and code in a way that\'s easy to maintain and update later — not a quick fix that breaks the next time something changes.',
+            ],
+          ].map((x) => (
+            <article key={x[1]}>
+              <div className="approach-icon">{x[0]}</div>
+              <b>{x[1]}</b>
+              <p>{x[2]}</p>
+            </article>
+          ))}
+        </div>
+
+        <Eyebrow>HOW I WORK</Eyebrow>
+        <h2 style={{ margin: '15px 0 36px' }}>
+          FROM TASK TO <mark>DELIVERY.</mark>
+        </h2>
+
+        <div className="process">
+          {[
+            [
+              '01',
+              'Review',
+              'I review the task, product data, and required storefront outcome.',
+            ],
+            [
+              '02',
+              'Organize',
+              'I prepare content, product details, images, categories, and source files.',
+            ],
+            [
+              '03',
+              'Update',
+              'I make website or catalog updates carefully and consistently.',
+            ],
+            [
+              '04',
+              'Check',
+              'I review the result for accuracy, responsiveness, and customer-facing quality.',
+            ],
+          ].map((x) => (
+            <article key={x[0]}>
+              <b>{x[0]}</b>
+              <h3>{x[1]}</h3>
+              <p>{x[2]}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="project"
         eyebrow="PORTFOLIO"
         title={
           <>
@@ -476,80 +498,50 @@ function App() {
       </Section>
 
       <Section
-        id="testimonials"
-        eyebrow="WHY WORK WITH ME"
+        id="skills"
+        eyebrow="SKILLS"
         title={
           <>
-            HOW I <mark>APPROACH WORK.</mark>
+            TOOLS <mark>& TECHNOLOGIES.</mark>
           </>
         }
-        sub="No fluff, no fake reviews — just how I actually work with clients on catalog and web projects."
+        sub="The platforms, tools, and technologies I use for web development and e-commerce catalog management."
       >
-        <div className="reviews">
-          {[
-            [
-              '🎯',
-              'Detail-Focused',
-              'Every product, image, and price gets double-checked before it goes live. Small errors in a catalog cost sales — I treat accuracy as non-negotiable.',
-            ],
-            [
-              '⏱️',
-              'Clear Communication',
-              'I respond within 24 hours, give realistic timelines, and update you on progress instead of going silent until the work is "done."',
-            ],
-            [
-              '🔁',
-              'Built to Last',
-              'I organize data and code in a way that\'s easy to maintain and update later — not a quick fix that breaks the next time something changes.',
-            ],
-          ].map((x) => (
-            <article key={x[1]}>
-              <div className="approach-icon">{x[0]}</div>
-              <b>{x[1]}</b>
-              <p>{x[2]}</p>
+        <Eyebrow>TOOLKIT</Eyebrow>
+        <h3 style={{ margin: '12px 0 24px', font: '28px "Bebas Neue"' }}>
+          Tools I Use Daily
+        </h3>
+
+        <div className="toolbox" style={{ marginBottom: 50 }}>
+          {tools.map((t) => (
+            <div key={t[1]}>
+              <i>{t[0]}</i>
+              <span>{t[1]}</span>
+            </div>
+          ))}
+        </div>
+
+        <Eyebrow>TECH STACK</Eyebrow>
+        <h3 style={{ margin: '12px 0 24px', font: '28px "Bebas Neue"' }}>
+          Technologies & Platforms
+        </h3>
+
+        <div className="tech-grid">
+          {tech.map((t) => (
+            <article key={t[1]}>
+              <i>{t[0]}</i>
+              <h3>{t[1]}</h3>
+              <p>{t[2]}</p>
             </article>
           ))}
         </div>
-      </Section>
 
-      <Section
-        eyebrow="HOW I WORK"
-        title={
-          <>
-            FROM TASK TO <mark>DELIVERY.</mark>
-          </>
-        }
-        sub="A clear process for web-development updates and catalog-management tasks."
-      >
-        <div className="process">
-          {[
-            [
-              '01',
-              'Review',
-              'I review the task, product data, and required storefront outcome.',
-            ],
-            [
-              '02',
-              'Organize',
-              'I prepare content, product details, images, categories, and source files.',
-            ],
-            [
-              '03',
-              'Update',
-              'I make website or catalog updates carefully and consistently.',
-            ],
-            [
-              '04',
-              'Check',
-              'I review the result for accuracy, responsiveness, and customer-facing quality.',
-            ],
-          ].map((x) => (
-            <article key={x[0]}>
-              <b>{x[0]}</b>
-              <h3>{x[1]}</h3>
-              <p>{x[2]}</p>
-            </article>
-          ))}
+        <div className="tech-footer">
+          🚀
+          <span>
+            These technologies and platforms help me turn ideas into real-world
+            solutions. <b>Clean code. Scalable systems. Seamless experiences.</b>
+          </span>
         </div>
       </Section>
 
@@ -698,14 +690,19 @@ function App() {
                 'Product Data Updates',
                 'Catalog Quality Checks',
               ],
-              ['Navigate', 'Services', 'Work', 'Process', 'Contact'],
+              ['Navigate', 'About', 'Experience', 'Project', 'Skills', 'Contact'],
               ['Work Focus', 'Shopify', 'WooCommerce', 'WordPress', 'Product Catalogs'],
             ].map((x) => (
               <div key={x[0]}>
                 <h4>{x[0]}</h4>
 
                 {x.slice(1).map((y) => (
-                  <a key={y} href="#services">
+                  <a
+                    key={y}
+                    href={`#${
+                      x[0] === 'Navigate' ? y.toLowerCase() : 'about'
+                    }`}
+                  >
                     {y}
                   </a>
                 ))}
