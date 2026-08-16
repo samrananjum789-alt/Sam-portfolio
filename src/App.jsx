@@ -1,42 +1,76 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import './App.css'
 
-const remote = 'https://www.meetnaqi.com/'
 
 const services = [
   [
-    '💻',
+    'code',
     '01',
     'Web Development',
     '// WordPress, Shopify & WooCommerce',
-    'Responsive website pages, product-page improvements, content updates, and frontend fixes for WordPress, Shopify, and WooCommerce stores.',
+    'Fast, responsive websites and storefront fixes built around what your customers actually need — for WordPress, Shopify, and WooCommerce.',
     ['HTML / CSS / JS', 'WordPress', 'Shopify', 'WooCommerce'],
   ],
   [
-    '📦',
+    'box',
     '02',
     'Catalog Management',
     '// product data & storefront quality',
-    'Accurate product listings with clear titles, descriptions, images, categories, tags, attributes, and variant information.',
+    'Clean, accurate titles, descriptions, images, and pricing — so customers find what they want and trust what they see.',
     ['Product Listings', 'Categories & Tags', 'Variants', 'Image Management'],
   ],
   [
-    '📊',
+    'chart',
     '03',
     'Inventory & Data Updates',
     '// CSV, SKU, price & stock',
-    'Structured product data updates to keep SKU details, pricing, stock, and catalog information organized and reliable.',
+    'Keep stock, pricing, and product data current, so nothing sells out silently or shows the wrong price.',
     ['CSV Import / Export', 'SKU Management', 'Price Updates', 'Stock Updates'],
   ],
   [
-    '✅',
+    'check',
     '04',
     'Catalog Quality Checks',
     '// accuracy before publishing',
-    'Product-data review and storefront checks to identify missing images, inconsistent details, broken links, and listing errors.',
+    'Catch missing images, broken links, and listing errors before customers do — fewer complaints, fewer lost sales.',
     ['Data Validation', 'Product Audits', 'Content Checks', 'Storefront QA'],
   ],
 ]
+
+const serviceIcons = {
+  code: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M8 4 2 12l6 8M16 4l6 8-6 8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  box: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path
+        d="M21 8 12 3 3 8v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  chart: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path
+        d="M4 20V10M12 20V4M20 20v-7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  check: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path
+        d="m5 13 4 4L19 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+}
 
 const tools = [
   ['⚡', 'VS Code'],
@@ -54,14 +88,14 @@ const tools = [
 ]
 
 const tech = [
-  ['⌘', 'HTML5', 'Markup language for structuring content on the web.'],
-  ['#', 'CSS3', 'Stylesheet language for designing responsive layouts.'],
-  ['JS', 'JavaScript', 'Programming language that brings interactivity to websites.'],
-  ['⚛', 'React', 'JavaScript library for fast, interactive user interfaces.'],
-  ['≈', 'Tailwind CSS', 'Utility-first CSS framework for custom designs.'],
-  ['php', 'PHP', 'Server-side scripting for dynamic web applications.'],
-  ['◉', 'MySQL', 'Relational database for storing and managing data.'],
-  ['W + S', 'WordPress & Shopify', 'Powerful platforms for websites and stores.'],
+  ['⌘', 'HTML5', 'Markup language for structuring content on the web.', 5],
+  ['#', 'CSS3', 'Stylesheet language for designing responsive layouts.', 4],
+  ['JS', 'JavaScript', 'Programming language that brings interactivity to websites.', 3],
+  ['⚛', 'React', 'JavaScript library for fast, interactive user interfaces.', 3],
+  ['≈', 'Tailwind CSS', 'Utility-first CSS framework for custom designs.', 4],
+  ['php', 'PHP', 'Server-side scripting for dynamic web applications.', 2],
+  ['◉', 'MySQL', 'Relational database for storing and managing data.', 2],
+  ['W + S', 'WordPress & Shopify', 'Powerful platforms for websites and stores.', 5],
 ]
 
 const projects = [
@@ -69,8 +103,9 @@ const projects = [
     platform: 'Shopify · Product Catalog Management',
     image: '/images/uspatriotcolors-product.png',
     title: 'US Patriot Colors',
-    description:
-      'Imported products from a source website, organized product tags and categories, added model information, and combined same-name products into clear variant options.',
+    problem: 'Products imported from a source site had messy tags, missing model info, and duplicate listings for the same item.',
+    result: 'Organized tags and categories, added model details, and merged duplicate listings into clean variant options — a clearer, easier-to-browse catalog.',
+    scope: 'Catalog Management · Shopify',
     skills: ['Product Import', 'Tags & Categories', 'Product Models', 'Variants'],
     link: 'https://uspatriotcolors.com/',
   },
@@ -78,8 +113,9 @@ const projects = [
     platform: 'WooCommerce · Product Catalog & Localization',
     image: '/images/computer-controls-catalog.png',
     title: 'Computer Controls',
-    description:
-      'Imported products from a source website and supported multilingual storefront content in French, German, and Italian for a broader customer experience.',
+    problem: 'Store needed products imported from a source site and content localized for French, German, and Italian shoppers.',
+    result: 'Full catalog import plus multilingual storefront content across 3 languages, opening the store to a broader customer base.',
+    scope: 'Catalog Management · WooCommerce · 3 languages',
     skills: [
       'Product Import',
       'WooCommerce',
@@ -92,8 +128,9 @@ const projects = [
     platform: 'Squarespace · Website Development',
     image: '/images/bay-linguistic-project.png',
     title: 'Bay Linguistic Advancement Center',
-    description:
-      'Built the website based on client requirements, created and organized picnic events, and set up a configured Payment Methods page.',
+    problem: 'Client needed a full website built from scratch, plus event and payment pages configured to spec.',
+    result: 'Delivered the complete site, organized picnic event pages, and set up a working Payment Methods page — ready for real customer use.',
+    scope: 'Website Development · Squarespace',
     skills: ['Website Development', 'Squarespace', 'Event Pages', 'Payment Setup'],
     link: 'https://www.baylinguistic.org/',
   },
@@ -101,8 +138,9 @@ const projects = [
     platform: 'WooCommerce · Product Import',
     image: '/images/emallshop-project.png',
     title: 'emallshop',
-    description:
-      'Scraped and imported products from the source website to populate the store catalog on WooCommerce.',
+    problem: 'Store catalog needed populating with products scraped and migrated from a source website.',
+    result: 'Full product catalog imported and structured on WooCommerce, ready for the store to go live with real inventory.',
+    scope: 'Catalog Import · WooCommerce',
     skills: ['Product Scraping', 'WooCommerce', 'Catalog Import', 'Data Migration'],
     link: 'https://sha.lk/',
   },
@@ -182,12 +220,7 @@ function App() {
       <nav className="navbar">
         <div className="container nav-inner">
           <a href="#home" className="brand" onClick={close}>
-            <div className="brand-mark">
-              <img
-                src={`${remote}assets/images/logo_fd7d03734eb644e3a55f8a7817667542.png?v=1784729360`}
-                alt="Samran Anjum"
-              />
-            </div>
+            <div className="brand-mark">S</div>
 
             <div>
               <b>Samran Anjum</b>
@@ -238,16 +271,17 @@ function App() {
             </div>
 
             <h1>
-              WEB <em>DEVELOPMENT</em> & <strong>PRODUCT</strong>
+              I BUILD <em>WEBSITES</em> &<br />
+              MANAGE <strong>PRODUCT CATALOGS</strong>
               <br />
-              CATALOG MANAGEMENT.
+              FOR GROWING STORES.
             </h1>
 
             <p>
-              I'm <b>Samran Anjum</b> — a Junior Web Developer and Catalog
-              Manager. I manage product listings, categories, images, pricing,
-              inventory data, and website updates for Shopify, WooCommerce, and
-              WordPress stores.
+              I'm <b>Samran Anjum</b>. I fix and build the storefront your
+              customers see, and organize the product data behind it —
+              listings, pricing, inventory — so your store stays accurate as
+              it grows.
             </p>
 
             <div className="cta">
@@ -256,7 +290,7 @@ function App() {
               </a>
 
               <a className="btn ghost" href="#contact">
-                Contact Me
+                Let's Work Together
               </a>
             </div>
 
@@ -314,19 +348,32 @@ function App() {
       >
         <div className="identity-grid" style={{ marginBottom: 60 }}>
           <div>
-            <p>
-              I'm Samran Anjum, a Junior Web Developer and Catalog Manager
-              based in Pakistan. I help e-commerce stores stay accurate,
-              organized, and customer-ready — combining frontend web-development
-              skills with detailed product catalog management for Shopify,
-              WooCommerce, and WordPress stores.
-            </p>
+            <div className="about-block">
+              <b className="about-label">Who I Am</b>
+              <p className="about-lede">
+                I got into web development and catalog management on my own —
+                no bootcamp, just curiosity about how online stores actually
+                work behind the scenes. That turned into real, hands-on
+                skills over the past several months.
+              </p>
+            </div>
 
-            <ul>
-              <li>⚡ Responsive website updates and frontend fixes</li>
-              <li>📦 Accurate product listings, variants, and attributes</li>
-              <li>✅ Product-data and storefront quality checks</li>
-            </ul>
+            <div className="about-block">
+              <b className="about-label">What I Do</b>
+              <ul className="check-list">
+                <li>Build and fix responsive websites for online stores</li>
+                <li>Organize accurate product listings, variants, pricing</li>
+                <li>Run storefront and product-data quality checks</li>
+              </ul>
+            </div>
+
+            <div className="about-block">
+              <b className="about-label">What Makes Me Different</b>
+              <ul className="check-list">
+                <li>I handle both the website and the data behind it — most people only do one</li>
+                <li>I actually enjoy the detail work most freelancers rush through</li>
+              </ul>
+            </div>
           </div>
 
           <div className="terminal">
@@ -365,11 +412,11 @@ function App() {
           {services.map((s, i) => (
             <article
               key={s[1]}
-              className="service"
+              className={`service${i === 0 ? ' service-wide' : ''}`}
               style={{ '--d': `${i * 0.09}s` }}
             >
               <div className="service-top">
-                <span>{s[0]}</span>
+                <span className="service-icon">{serviceIcons[s[0]]}</span>
                 <small>{s[1]}</small>
               </div>
 
@@ -397,38 +444,24 @@ function App() {
         }
         sub="No fluff, no fake reviews — just how I actually work with clients on catalog and web projects."
       >
-        <div className="reviews" style={{ marginBottom: 60 }}>
-          {[
-            [
-              '🎯',
-              'Detail-Focused',
-              'Every product, image, and price gets double-checked before it goes live. Small errors in a catalog cost sales — I treat accuracy as non-negotiable.',
-            ],
-            [
-              '⏱️',
-              'Clear Communication',
-              'I respond within 24 hours, give realistic timelines, and update you on progress instead of going silent until the work is "done."',
-            ],
-            [
-              '🔁',
-              'Built to Last',
-              'I organize data and code in a way that\'s easy to maintain and update later — not a quick fix that breaks the next time something changes.',
-            ],
-          ].map((x) => (
-            <article key={x[1]}>
-              <div className="approach-icon">{x[0]}</div>
-              <b>{x[1]}</b>
-              <p>{x[2]}</p>
-            </article>
-          ))}
+        <p style={{ color: 'var(--dim)', fontSize: 15, lineHeight: 1.8, maxWidth: 640, marginBottom: 12 }}>
+          I've been doing this seriously for under a year — so I won't
+          pretend to have a decade of war stories. What I do have is a
+          consistent way of working that's held up across every project so
+          far:
+        </p>
+
+        <div className="timeline-stat">
+          <b>8+ MONTHS</b> hands-on, self-taught, and still learning every week
         </div>
 
-        <Eyebrow>HOW I WORK</Eyebrow>
-        <h2 style={{ margin: '15px 0 36px' }}>
-          FROM TASK TO <mark>DELIVERY.</mark>
-        </h2>
+        <div className="trait-strip">
+          <span>🎯 Detail-Focused</span>
+          <span>⏱️ Clear Communication</span>
+          <span>🔁 Built to Last</span>
+        </div>
 
-        <div className="process">
+        <div className="process process-flow">
           {[
             [
               '01',
@@ -450,12 +483,19 @@ function App() {
               'Check',
               'I review the result for accuracy, responsiveness, and customer-facing quality.',
             ],
-          ].map((x) => (
-            <article key={x[0]}>
-              <b>{x[0]}</b>
-              <h3>{x[1]}</h3>
-              <p>{x[2]}</p>
-            </article>
+          ].map((x, i, arr) => (
+            <Fragment key={x[0]}>
+              <article>
+                <b>{x[0]}</b>
+                <h3>{x[1]}</h3>
+                <p>{x[2]}</p>
+              </article>
+              {i < arr.length - 1 && (
+                <span className="process-arrow" aria-hidden="true">
+                  →
+                </span>
+              )}
+            </Fragment>
           ))}
         </div>
       </Section>
@@ -480,7 +520,17 @@ function App() {
 
               <div>
                 <h3>{p.title}</h3>
-                <p>{p.description}</p>
+                <div className="project-scope">{p.scope}</div>
+
+                <div className="project-block">
+                  <span className="project-label">Problem</span>
+                  <p>{p.problem}</p>
+                </div>
+
+                <div className="project-block">
+                  <span className="project-label">What I Did</span>
+                  <p>{p.result}</p>
+                </div>
 
                 <ul className="project-skills">
                   {p.skills.map((skill) => (
@@ -532,15 +582,20 @@ function App() {
               <i>{t[0]}</i>
               <h3>{t[1]}</h3>
               <p>{t[2]}</p>
+              <div className="skill-level" aria-label={`Proficiency ${t[3]} of 5`}>
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <span key={n} className={n <= t[3] ? 'filled' : ''} />
+                ))}
+              </div>
             </article>
           ))}
         </div>
 
         <div className="tech-footer">
-          🚀
           <span>
-            These technologies and platforms help me turn ideas into real-world
-            solutions. <b>Clean code. Scalable systems. Seamless experiences.</b>
+            HTML/CSS and WordPress-Shopify work is where I'm strongest — React
+            and PHP I'm still actively building depth in, learning through
+            real projects rather than tutorials alone.
           </span>
         </div>
       </Section>
@@ -561,7 +616,10 @@ function App() {
             <p>Reach out using any option below. I usually respond within 24 hours.</p>
 
             <a href="mailto:Samrananjum789@gmail.com">
-              ✉️
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+                <path d="m3 6.5 9 6.5 9-6.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               <span>
                 <small>Email</small>
                 Samrananjum789@gmail.com
@@ -569,7 +627,9 @@ function App() {
             </a>
 
             <a href="https://wa.me/923480256936">
-              💬
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path d="M4 20 5.5 15.5A8 8 0 1 1 9 18.5L4 20Z" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               <span>
                 <small>WhatsApp</small>
                 Message me now
@@ -577,7 +637,10 @@ function App() {
             </a>
 
             <a href="#contact">
-              📍
+              <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="9" r="2.3" />
+              </svg>
               <span>
                 <small>Based in</small>
                 Pakistan
