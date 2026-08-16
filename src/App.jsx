@@ -126,7 +126,7 @@ const projects = [
   },
   {
     platform: 'Squarespace · Website Development',
-    image: '/images/bay-linguistic-project.png',
+    image: '/images/bay-linguistic-project.webp',
     title: 'Bay Linguistic Advancement Center',
     problem: 'Client needed a full website built from scratch, plus event and payment pages configured to spec.',
     result: 'Delivered the complete site, organized picnic event pages, and set up a working Payment Methods page — ready for real customer use.',
@@ -136,7 +136,7 @@ const projects = [
   },
   {
     platform: 'WooCommerce · Product Import',
-    image: '/images/emallshop-project.png',
+    image: '/images/emallshop-project.webp',
     title: 'emallshop',
     problem: 'Store catalog needed populating with products scraped and migrated from a source website.',
     result: 'Full product catalog imported and structured on WooCommerce, ready for the store to go live with real inventory.',
@@ -310,7 +310,14 @@ function App() {
           </div>
 
           <div className="profile">
-            <img src="/images/samran-anjum-profile.png" alt="Samran Anjum" />
+            <img
+              src="/images/samran-anjum-profile.webp"
+              alt="Samran Anjum"
+              width="600"
+              height="525"
+              loading="eager"
+              fetchpriority="high"
+            />
           </div>
         </div>
       </header>
@@ -515,7 +522,14 @@ function App() {
             <article key={p.title}>
               <div className="thumb">
                 <span>{p.platform}</span>
-                <img src={p.image} alt={`${p.title} project screenshot`} />
+                <img
+                  src={p.image}
+                  alt={`${p.title} project screenshot`}
+                  width="600"
+                  height="460"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               <div>
@@ -528,10 +542,13 @@ function App() {
                 </div>
 
                 <div className="project-block">
-                  <span className="project-label">What I Did</span>
+                  <span className="project-label">Solution & Result</span>
                   <p>{p.result}</p>
                 </div>
 
+                <span className="project-label" style={{ display: 'block', marginBottom: 8 }}>
+                  Technologies
+                </span>
                 <ul className="project-skills">
                   {p.skills.map((skill) => (
                     <li key={skill}>{skill}</li>
@@ -539,7 +556,7 @@ function App() {
                 </ul>
 
                 <a href={p.link} target="_blank" rel="noreferrer">
-                  Visit Website →
+                  Live Demo →
                 </a>
               </div>
             </article>
