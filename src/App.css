@@ -609,3 +609,677 @@
   margin-bottom:14px;
   font-family:var(--mono);
 }
+/* ===== Responsive layout and content fixes ===== */
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  padding-inline: 24px;
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+}
+
+.identity-grid,
+.contact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.services-grid,
+.tech-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.work-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.toolbox {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  box-shadow: none;
+}
+
+.form-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hero-grid > *,
+.identity-grid > *,
+.contact > *,
+.services-grid > *,
+.work-grid > *,
+.tech-grid > *,
+.toolbox > *,
+.footer-grid > *,
+.form-row > *,
+.process-flow > * {
+  min-width: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+.project-scope,
+.project-label,
+.service code,
+.contact a span,
+.footer .brand {
+  overflow-wrap: anywhere;
+}
+
+.status {
+  line-height: 1.7;
+}
+
+.brand {
+  min-width: 0;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+}
+
+.brand > div:last-child,
+.brand > b {
+  min-width: 0;
+}
+
+.brand small {
+  line-height: 1.5;
+}
+
+.nav-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.nav-links {
+  max-height: calc(100dvh - 100%);
+  overflow-y: auto;
+}
+
+.btn {
+  min-height: 44px;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stats div {
+  min-width: 0;
+}
+
+.stats span {
+  display: block;
+  line-height: 1.5;
+}
+
+.profile {
+  width: 100%;
+}
+
+.profile img {
+  display: block;
+  width: 100%;
+}
+
+.terminal {
+  width: 100%;
+  min-width: 0;
+}
+
+.terminal pre {
+  max-width: 100%;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+}
+
+.terminal header span {
+  overflow-wrap: anywhere;
+}
+
+/* Keep complete borders on every toolbox card. */
+.toolbox div:nth-child(n) {
+  border: 1px solid var(--line);
+}
+
+/* Experience bullets should not inherit service tag styling. */
+.service ul.check-list {
+  display: block;
+  list-style: none;
+  padding: 0 !important;
+  margin: 12px 0 0;
+}
+
+.service ul.check-list li {
+  display: block;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 2px 0 2px 26px;
+  color: var(--dim);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.service:hover ul.check-list li {
+  border: 0;
+  background: transparent;
+}
+
+#experience .service {
+  min-height: 0;
+}
+
+#experience .service:hover {
+  transform: none;
+}
+
+.check-list li {
+  margin-bottom: 10px;
+}
+
+.service ul:not(.check-list) li,
+.project-skills li {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.process-flow article:nth-child(n) {
+  min-width: 0;
+  border: 1px solid var(--line);
+}
+
+.work-grid .thumb {
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+
+.work-grid .thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.work-grid .thumb span {
+  max-width: calc(100% - 32px);
+  white-space: normal;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.work-grid article > div:last-child {
+  padding: 24px;
+}
+
+.work-grid a {
+  min-height: 44px;
+  align-items: center;
+}
+
+.contact form {
+  min-width: 0;
+}
+
+.contact input,
+.contact textarea,
+.contact select {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  font-size: 16px !important;
+}
+
+.contact textarea {
+  min-height: 140px;
+}
+
+.contact form > small {
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+.contact > div > a {
+  min-height: 44px;
+}
+
+.contact > div > a > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.bottom {
+  gap: 20px;
+  align-items: center;
+}
+
+.socials {
+  flex-shrink: 0;
+}
+
+.socials a {
+  width: 44px;
+  height: 44px;
+}
+
+/* Tablet and smaller laptops */
+@media (max-width: 1100px) {
+  .services-grid,
+  .tech-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .toolbox {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .identity-grid,
+  .contact {
+    gap: 36px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  .brand small {
+    letter-spacing: 0.6px;
+  }
+}
+
+/* Switch navigation before desktop links become crowded. */
+@media (max-width: 1050px) {
+  .navbar {
+    background: #0a0806f2;
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 16px 24px 24px;
+    background: #100d0a;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links > a:not(.btn) {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 0;
+  }
+
+  .nav-links .btn {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero-grid,
+  .identity-grid,
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .hero {
+    min-height: 0;
+    padding-top: 110px;
+  }
+
+  .hero-grid {
+    min-height: 0;
+  }
+
+  .hero-copy {
+    padding: 20px 0 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 8vw, 64px);
+    line-height: 1.02;
+  }
+
+  .hero-copy > p {
+    max-width: 680px;
+  }
+
+  .profile {
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  .profile img {
+    height: 450px;
+  }
+
+  .work-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .service-wide {
+    grid-column: auto;
+  }
+
+  .toolbox {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .process-flow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .process-flow article {
+    flex: auto;
+    padding: 22px;
+  }
+
+  .process-arrow {
+    width: 100%;
+    height: 24px;
+    transform: rotate(90deg);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-grid > div:last-child {
+    display: block;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .socials {
+    justify-content: flex-start;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .container {
+    padding-inline: 18px;
+  }
+
+  .brand {
+    gap: 9px;
+  }
+
+  .brand b {
+    font-size: 19px;
+  }
+
+  .brand small {
+    max-width: 220px;
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero {
+    padding-top: 100px;
+  }
+
+  .hero h1 {
+    font-size: clamp(35px, 9.5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: 0.6px;
+  }
+
+  .status {
+    font-size: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .hero-copy > p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .cta {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 14px;
+  }
+
+  .stats div {
+    padding-left: 12px;
+  }
+
+  .stats b {
+    font-size: 28px;
+  }
+
+  .stats span {
+    font-size: 12px;
+  }
+
+  .profile {
+    max-width: 380px;
+  }
+
+  .profile img {
+    height: 390px;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .section h2 {
+    font-size: clamp(32px, 8vw, 44px) !important;
+    line-height: 1.08;
+    letter-spacing: 0.8px;
+  }
+
+  .sub {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+
+  .services-grid,
+  .tech-grid,
+  .reviews {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .service h3,
+  .tech-grid h3 {
+    font-size: 21px;
+  }
+
+  .toolbox {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .toolbox div {
+    padding: 18px 10px;
+  }
+
+  .terminal pre {
+    font-size: 11px;
+    padding: 18px;
+  }
+
+  .work-grid article > div:last-child {
+    padding: 20px;
+  }
+
+  .work-grid h3 {
+    font-size: 23px;
+  }
+
+  .work-grid .thumb span {
+    top: 12px;
+    left: 12px;
+    max-width: calc(100% - 24px);
+    font-size: 10px !important;
+    padding: 5px 8px;
+  }
+
+  .trait-strip {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .trait-strip span {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .contact form {
+    padding: 20px;
+  }
+
+  .contact form .btn {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer {
+    padding-top: 40px;
+  }
+}
+
+/* Narrow phones */
+@media (max-width: 380px) {
+  .container {
+    padding-inline: 14px;
+  }
+
+  .brand small {
+    max-width: 185px;
+    font-size: 7px;
+  }
+
+  .brand b {
+    font-size: 17px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 9.3vw, 35px);
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .profile img {
+    height: 340px;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: auto;
+  }
+}
+
+/* Avoid hover movement on touch devices. */
+@media (hover: none), (pointer: coarse) {
+  .cursor-glow {
+    display: none;
+  }
+
+  .service:hover,
+  .tech-grid article:hover,
+  .work-grid article:hover,
+  .toolbox div:hover,
+  .btn:hover {
+    transform: none;
+  }
+
+  .work-grid article:hover .thumb img {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+
+  .marquee div {
+    animation: none;
+  }
+
+  .service:hover,
+  .tech-grid article:hover,
+  .work-grid article:hover,
+  .toolbox div:hover,
+  .btn:hover {
+    transform: none;
+  }
+}
